@@ -1,8 +1,5 @@
 testdata = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
 def arithmetic_arranger(problems):
-  # Determine how many equations are in the input list
-  problemsCount = len(problems)
-
   library = []
   # Split each equation string in the list 'problems' 
   # into it's own list and assign the operands and 
@@ -10,32 +7,15 @@ def arithmetic_arranger(problems):
   # new dictionary to the list 'library'
   for equation in problems:
     splitEq = equation.split()
-    if len(splitEq[0]) > len(splitEq[2]):
-      print('Bypass for now')
+    longestOperand = len(max(splitEq, key=len))
+    # !!!!! Before sending to the dictionary we need to build the result and line
     eqDict = ({'var1' : splitEq[0], 'operator' : splitEq[1], 'var2' :  splitEq[2]})
     library.append(eqDict)
   for dict in library:
     print(dict)
 
 
-
-
-
-
-
   """
-  # Set maxLen to the length of the longer of the two operands
-  maxLen = 0
-  for value in myDict.values():
-    if len(value) > maxLen:
-      maxLen = len(value)
-      continue
-  # Apply that length to the shorter operand
-  for key in myDict.keys():
-    if len(myDict[key]) < maxLen:
-      myDict.update({key : ' ' + myDict[key]})
-  print(myDict)
-  
   # Build a string from parallel indexes in each equation
   for problem in splitProblems:
     line1 = line1 + problem[0] + ' '
