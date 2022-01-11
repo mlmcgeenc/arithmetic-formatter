@@ -1,10 +1,11 @@
 testdata = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
+import re
 def arithmetic_arranger(problems):
   library = []
-  # Split each equation string in the list 'problems' 
-  # into it's own list and assign the operands and 
-  # operator to keys in a dictionary, then add the
-  # new dictionary to the list 'library'
+  # Split each equation string in the list 'problems'
+  # Determine the length of the longer operand
+  # Solve the equation and add the solution to the dictionary
+  # Add whitespace to the operands so they are the same length
   for equation in problems:
     splitEq = equation.split()
     longestOperand = len(max(splitEq, key=len))
@@ -13,6 +14,9 @@ def arithmetic_arranger(problems):
       mathResult = int(splitEq[0]) + int(splitEq[2])
     else:
       mathResult = int(splitEq[0]) - int(splitEq[2])
+    for index, entry in enumerate(splitEq):
+      if re.match("^[+-]$", entry) == None:
+        splitEq[index] = entry.rjust(longestOperand)
     # !!!!! Before sending to the dictionary we need to build the result and line
     eqDict = ({'line1' : splitEq[0], 'line2' : splitEq[1] + ' ' + splitEq[2], 'line3' :  '----', 'line4' : mathResult})
     library.append(eqDict)
