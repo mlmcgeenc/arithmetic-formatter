@@ -3,7 +3,7 @@ def arithmetic_arranger(problems):
   # Determine how many equations are in the input list
   problemsCount = len(problems)
 
-  # Initialize the dictionary that will hold calues before printing
+  # Initialize the dictionary that will hold values before printing
   library = {}
 
   # Initialize the 4 lines that will be displayed in the output
@@ -17,9 +17,21 @@ def arithmetic_arranger(problems):
   for problem in problems:
     splitProblems.append(problem.split()) 
 
+  # Assign values from the split problem list into a dictionary
   library.update({'var1' : splitProblems[0][0],'operator' : splitProblems[0][1], 'var2' : splitProblems[0][2]})
   print(library)
-
+  # Set maxLen to the length of the longer of the two operands
+  maxLen = 0
+  for value in library.values():
+    if len(value) > maxLen:
+      maxLen = len(value)
+      continue
+  # Apply that length to the shorter operand
+  for key in library.keys():
+    if len(library[key]) < maxLen:
+      library.update({key : ' ' + library[key]})
+  print(library)
+  
   # Build a string from parallel indexes in each equation
   for problem in splitProblems:
     line1 = line1 + problem[0] + ' '
