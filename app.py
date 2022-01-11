@@ -1,4 +1,15 @@
-testdata = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
+#testdata = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
+testdata = ['3801 - 2', '123 + 49']
+#testdata = ['1 + 2', '1 - 9380']
+#testdata = ['3 + 855', '3801 - 2', '45 + 43', '123 + 49']
+#testdata = ['11 + 4', '3801 - 2999', '1 + 2', '123 + 49', '1 - 9380']
+#testdata = ['44 + 815', '909 - 2', '45 + 43', '123 + 49', '888 + 40', '653 + 87']
+#testdata = ['3 / 855', '3801 - 2', '45 + 43', '123 + 49']
+#testdata = ['24 + 85215', '3801 - 2', '45 + 43', '123 + 49']
+#testdata = ['98 + 3g5', '3801 - 2', '45 + 43', '123 + 49']
+#testdata = [['3 + 855', '988 + 40'], True]
+#testdata = ['32 - 698', '1 - 3801', '45 + 43', '123 + 49', '988 + 40'], True]
+
 import re
 def arithmetic_arranger(problems):
   library = []
@@ -36,12 +47,13 @@ def arithmetic_arranger(problems):
     multiLine[1] = multiLine[1] + myDict['line2']
     multiLine[2] = multiLine[2] + myDict['line3']
     multiLine[3] = multiLine[3] + myDict['line4']
-    if index <= (len(library) - 2):
-      multiLine[0] = multiLine[0] + '   '
-      multiLine[1] = multiLine[1] + '   '
-      multiLine[2] = multiLine[2] + '   '
-      multiLine[3] = multiLine[3] + '   '
+    if index + 1 == (len(library)):
       continue
+    else:
+      multiLine[0] = multiLine[0] + '    '
+      multiLine[1] = multiLine[1] + '    '
+      multiLine[2] = multiLine[2] + '    '
+      multiLine[3] = multiLine[3] + '    '
   # Arrange and return the formatted equations 
   arranged_problems = "\n".join(multiLine)
   return arranged_problems
