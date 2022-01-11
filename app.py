@@ -23,15 +23,11 @@ def arithmetic_arranger(problems):
       divider = '-' + divider
       continue
     # Add the operands, divider line, and solution to the library
-    eqDict = ({'line1' : splitEq[0], 'line2' : splitEq[1] + ' ' + splitEq[2], 'line3' :  divider, 'line4' : mathResult})
+    eqDict = ({'line1' : '  ' + splitEq[0], 'line2' : splitEq[1] + ' ' + splitEq[2], 'line3' :  divider, 'line4' : str(mathResult).rjust(longestOperand + 2)})
     library.append(eqDict)
-  for dict in library:
-    print(dict)
-
-  """  
-  multiline = [line1, line2, line3, line4]
-  arranged_problems = '\n'.join(multiline)
-  """
-  arranged_problems = 'In testing'
-  return arranged_problems
+  print(str(library[0].get('line1'))+'  '+str(library[1].get('line1'))+'  '+str(library[2].get('line1')))
+  print(str(library[0].get('line2'))+'  '+str(library[1].get('line2'))+'  '+str(library[2].get('line2')))
+  print(str(library[0].get('line3'))+'  '+str(library[1].get('line3'))+'  '+str(library[2].get('line3')))
+  print(str(library[0].get('line4'))+'  '+str(library[1].get('line4'))+'  '+str(library[2].get('line4')))
+  #return arranged_problems
 print(arithmetic_arranger(testdata))
