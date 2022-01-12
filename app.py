@@ -1,4 +1,4 @@
-testdata = [["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True]
+#testdata = [["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True]
 #testdata = ['3801 - 2', '123 + 49']
 #testdata = ['1 + 2', '1 - 9380']
 #testdata = ['3 + 855', '3801 - 2', '45 + 43', '123 + 49']
@@ -12,12 +12,21 @@ testdata = [["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True]
 
 import re
 def arithmetic_arranger(problems):
-  if len(problems) > 5:
+  newprobs = [*problems]
+  if True in problems:
+    myprobs = newprobs[0]
+    printsolutions = newprobs[1]
+  else:
+    myprobs = problems
+    printsolutions = False
+
+  # Check to make sure there are no more than 5 equations
+  if len(myprobs) > 5:
     return "Error: Too many problems."
   library = []
 
   # Split each equation string in the list 'problems' into it's own list
-  for equation in problems:
+  for equation in myprobs:
     if re.findall('[a-zA-Z]', str(equation)) != []:
       return 'Error: Numbers must only contain digits.'
     splitEq = equation.split()
@@ -60,15 +69,15 @@ def arithmetic_arranger(problems):
     multiLine[0] = multiLine[0] + libDict['line0']
     multiLine[1] = multiLine[1] + libDict['line1']
     multiLine[2] = multiLine[2] + libDict['line2']
-    multiLine[3] = multiLine[3] + libDict['line3']
+    if printsolutions == True:
+      multiLine[3] = multiLine[3] + libDict['line3']
     if index + 1 != (len(library)):
       multiLine[0] = multiLine[0] + '    '
       multiLine[1] = multiLine[1] + '    '
       multiLine[2] = multiLine[2] + '    '
       multiLine[3] = multiLine[3] + '    '
       continue
-
-  # Joine our strings with breaks in the appropriate places and return for printing 
+  # Join our strings with breaks in the appropriate places and return for printing 
   arranged_problems = "\n".join(multiLine)
   return arranged_problems
 print(arithmetic_arranger(testdata))
