@@ -1,4 +1,4 @@
-testdata = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
+testdata = [["32 + 698", "3801 - 2", "45 + 43", "123 + 49"], True]
 #testdata = ['3801 - 2', '123 + 49']
 #testdata = ['1 + 2', '1 - 9380']
 #testdata = ['3 + 855', '3801 - 2', '45 + 43', '123 + 49']
@@ -8,7 +8,7 @@ testdata = ["32 + 698", "3801 - 2", "45 + 43", "123 + 49"]
 #testdata = ['24 + 85215', '3801 - 2', '45 + 43', '123 + 49']
 #testdata = ['98 + 3g5', '3801 - 2', '45 + 43', '123 + 49']
 #testdata = [['3 + 855', '988 + 40'], True]
-#testdata = ['32 - 698', '1 - 3801', '45 + 43', '123 + 49', '988 + 40'], True]
+#testdata = [['32 - 698', '1 - 3801', '45 + 43', '123 + 49', '988 + 40'], True]
 
 import re
 def arithmetic_arranger(problems):
@@ -56,7 +56,7 @@ def arithmetic_arranger(problems):
   multiLine = ['', '', '', '']
   
   # Create strings from dictionary values contained in the library list
-  for index, libDict in enumerate(library):
+  for libDict in library:
     multiLine[0] = multiLine[0] + libDict['line0']
     multiLine[1] = multiLine[1] + libDict['line1']
     multiLine[2] = multiLine[2] + libDict['line2']
@@ -67,7 +67,8 @@ def arithmetic_arranger(problems):
       multiLine[2] = multiLine[2] + '    '
       multiLine[3] = multiLine[3] + '    '
       continue
-  # Arrange and return the formatted equations 
+
+  # Joine our strings with breaks in the appropriate places and return for printing 
   arranged_problems = "\n".join(multiLine)
   return arranged_problems
 print(arithmetic_arranger(testdata))
