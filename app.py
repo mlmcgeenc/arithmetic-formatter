@@ -8,11 +8,11 @@
 #testdata = ['24 + 85215', '3801 - 2', '45 + 43', '123 + 49']
 #testdata = ['98 + 3g5', '3801 - 2', '45 + 43', '123 + 49']
 #testdata = [['3 + 855', '988 + 40'], True]
-#testdata = [['32 - 698', '1 - 3801', '45 + 43', '123 + 49', '988 + 40'], True]
+testdata = [['32 - 698', '1 - 3801', '45 + 43', '123 + 49', '988 + 40'], True]
 
 import re
-def arithmetic_arranger(problems):
-  newprobs = [*problems]
+def arithmetic_arranger(problems, printSol=False):
+  newprobs = problems
   if True in problems:
     myprobs = newprobs[0]
     printsolutions = newprobs[1]
@@ -62,22 +62,30 @@ def arithmetic_arranger(problems):
     library.append(eqDict)
 
   # Create an array that will hold the formatted strings before printing to the screen
-  multiLine = ['', '', '', '']
+  if printsolutions == True:
+    multiLine = ['', '', '', '']
+  else:
+    multiLine = ['', '', '']
   
   # Create strings from dictionary values contained in the library list
+  count = 0
   for libDict in library:
-    multiLine[0] = multiLine[0] + libDict['line0']
-    multiLine[1] = multiLine[1] + libDict['line1']
-    multiLine[2] = multiLine[2] + libDict['line2']
-    if printsolutions == True:
-      multiLine[3] = multiLine[3] + libDict['line3']
-    if index + 1 != (len(library)):
-      multiLine[0] = multiLine[0] + '    '
-      multiLine[1] = multiLine[1] + '    '
-      multiLine[2] = multiLine[2] + '    '
-      multiLine[3] = multiLine[3] + '    '
-      continue
-  # Join our strings with breaks in the appropriate places and return for printing 
-  arranged_problems = "\n".join(multiLine)
+    if count + 1 != len(library):
+      multiLine[0] = multiLine[0] + libDict['line0'] + '    '
+      multiLine[1] = multiLine[1] + libDict['line1'] + '    '
+      multiLine[2] = multiLine[2] + libDict['line2'] + '    '
+      if printsolutions == True:
+        multiLine[3] = multiLine[3] + libDict['line3'] + '    '
+      count += 1
+    else:
+      multiLine[0] = multiLine[0] + libDict['line0'] + "\n"
+      multiLine[1] = multiLine[1] + libDict['line1'] + "\n"
+      multiLine[2] = multiLine[2] + libDict['line2'] + "\n"
+      if printsolutions == True:
+        multiLine[3] = multiLine[3] + libDict['line3'] + "\n"
+    continue
+  # Join strings with breaks in the appropriate places and return for printing 
+  arranged_problems = "".join(multiLine)
+  print(multiLine)
   return arranged_problems
 print(arithmetic_arranger(testdata))
